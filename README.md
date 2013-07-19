@@ -2,6 +2,7 @@ tools.js
 ========
 
 www.yoka.com 前端框架 : 用于yoka全站
+http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js
 
 
 功能如下
