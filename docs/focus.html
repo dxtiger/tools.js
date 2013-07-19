@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-focus</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong>Core</strong><strong class="on">Plugin</strong>
+			</div>
+			<div class="menu">
+				<div id="menu_core">
+					
+				</div>
+				<div class="on" id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>focus</h2>
+				<p class="description">焦点图</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="focus">focus</h3>
+					<p class="description">实例化</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+focus(id,time,callback);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>id-(<em>string</em>) dom节点id</li>
+						<li>time-(<em>number</em>) 间隔时长.默认5000</li>
+						<li>callback-(<em>function</em>) 回调方法
+							<ul>
+								<li>number-(<em>number</em>) 当前焦点图序号</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>change-(<em>function</em>) 控制焦点图变化到某一张
+							<ul>
+								<li>n-(<em>number</em>) 第n张</li>
+							</ul>
+						</li>
+						<li>getCurrent-(<em>function</em>) 获取当前焦点图播放的序号</li>
+						<li>length-(<em>number</em>) 焦点图的图片总数</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = focus('aaa');
+console.log(a); // object;
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="change">focus.change</h3>
+					<p class="description">控制焦点图变化到某一张</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+focus.change(n);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>m-(<em>number</em>) 第n张;</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = focus('aaa');
+
+a.change(3);
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3 id="getCurrent">focus.getCurrent</h3>
+					<p class="description">获取当前焦点图播放的序号</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+focus.getCurrent();
+					</pre>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = focus('aaa'),
+	current;
+
+a.change(3);
+current = a.getCurrent();
+console.log(current); // 3
+
+a.change(0);
+current = a.getCurretn();
+console.log(current); // 0
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="length">focus.length</h3>
+					<p class="description">焦点图的图片总数</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+focus.length;
+					</pre>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="aaa"&gt;
+	&lt;img src="a.jpg" /&gt;
+	&lt;img src="b.jpg" /&gt;
+	&lt;img src="c.jpg" /&gt;
+&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = focus('aaa'),
+	len;
+
+len = a.length;
+console.log(len); // 3
+
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3>样例</h3>
+					<p class="description">焦点图</p>
+<style>
+	/** focus **/
+	.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+	.yo_focus dt { position:absolute; }
+	.yo_focus img { position:absolute; display:none;}
+	.yo_focus dd { top:459px;  position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+	.yo_focus ul { float:left; padding:0 0 0 5px;}
+	.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+	.yo_focus li.on { background:#3F77A5; color:#fff;}
+</style>
+<dl class="yo_focus" id="c1_focus">
+	<dt>
+		<a href="http://www.yoka.com/star/starwear/2012/0613670396.shtml"><img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg" alt="明星：范冰冰玩透视 关颖露美背抢镜" /></a>
+		<a href="http://www.yoka.com/fashion/popinfo/2012/0612669977.shtml"><img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg" alt="时装：探秘热带雨林 植物印花开遍衣裙" /></a>
+		<a href="http://street.yoka.com/gp_12046.htm"><img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg" alt="街拍：小成本大制作 街拍拍出大片范" /></a>
+		<a href="http://www.yoka.com/luxury/watch/2012/0613670199.shtml"><img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg" alt="奢华：晚宴休闲两不误 女星演绎优雅女表" /></a>
+	</dt>
+	<dd></dd>
+</dl>
+<script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	Y('yokaPublic',function(){
+		yo.focus('c1_focus');
+	})
+</script>
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+.yo_focus dt { position:absolute; }
+.yo_focus img { position:absolute; display:none;}
+.yo_focus dd { top:459px;  position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+.yo_focus ul { float:left; padding:0 0 0 5px;}
+.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+.yo_focus li.on { background:#3F77A5; color:#fff;}
+&lt;/style>
+
+
+&lt;dl class="yo_focus" id="c1_focus"&gt;
+	&lt;dt&gt;
+		&lt;a href="#"&gt;&lt;img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg" /&gt;&lt;/a&gt;
+		&lt;a href="#"&gt;&lt;img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg" /&gt;&lt;/a&gt;
+		&lt;a href="#"&gt;&lt;img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg" /&gt;&lt;/a&gt;
+		&lt;a href="#"&gt;&lt;img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg" /&gt;&lt;/a&gt;
+	&lt;/dt&gt;
+	&lt;dd&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;script>				
+Y('yokaPublic',function(){
+	yo.focus('c1_focus');
+})
+&lt;/script>
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>样例2</h3>
+					<p class="description">焦点图</p>
+<style>
+	/** focus **/
+	.focus2 { width:480px;}
+	.focus2 span,.focus2 i {font-size:40px; cursor:pointer; display:inline-block; padding:10px; background:#000;  color:#fff; margin:200px 0 0;}
+	.focus2 span { float:left;}
+	.focus2 i { float:right;}
+	.focus2 .yo_focus { margin:0 auto;}
+	.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+	.yo_focus dt { position:absolute; }
+	.yo_focus img { position:absolute; display:none;}
+	.yo_focus dd { top:459px;  position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+	.yo_focus ul { float:left; padding:0 0 0 5px;}
+	.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+	.yo_focus li.on { background:#3F77A5; color:#fff;}
+</style>
+<div class="focus2">
+	<span id="focus2_leftBtn"><</span>
+	<i id="focus2_rightBtn">></i>
+	<dl class="yo_focus" id="c2_focus">
+		<dt>
+			<a href="http://www.yoka.com/star/starwear/2012/0613670396.shtml"><img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg" alt="明星：范冰冰玩透视 关颖露美背抢镜" /></a>
+			<a href="http://www.yoka.com/fashion/popinfo/2012/0612669977.shtml"><img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg" alt="时装：探秘热带雨林 植物印花开遍衣裙" /></a>
+			<a href="http://street.yoka.com/gp_12046.htm"><img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg" alt="街拍：小成本大制作 街拍拍出大片范" /></a>
+			<a href="http://www.yoka.com/luxury/watch/2012/0613670199.shtml"><img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg" alt="奢华：晚宴休闲两不误 女星演绎优雅女表" /></a>
+		</dt>
+		<dd></dd>
+	</dl>
+</div>
+<script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	
+	Y('yokaPublic',function(){
+		function focus2(opt){
+			var id = opt.focusId,
+				leftBtn = document.getElementById(opt.leftBtn),
+				rightBtn = document.getElementById(opt.rightBtn),
+				focus,
+				current,
+				len;
+			
+			focus = yo.focus(id);
+			len = focus.length;
+			
+			Event.add(leftBtn,'click',function(){
+				change(true);
+			});
+			Event.add(rightBtn,'click',function(){
+				change();
+			});
+			
+			function change(state){
+				current = focus.getCurrent();
+				current = state ? current-1 : current+1;
+				if(current < 0){
+					current = len-1;
+				}
+				if(current == len){
+					current = 0;
+				}
+				focus.change(current);
+			}
+			
+		}
+		focus2({
+			focusId : 'c2_focus',
+			leftBtn : 'focus2_leftBtn',
+			rightBtn : 'focus2_rightBtn'
+		})
+	})
+</script>
+					
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+.focus2 { width:480px;}
+.focus2 span,.focus2 i {font-size:40px; cursor:pointer; display:inline-block; padding:10px; background:#000;  color:#fff; margin:200px 0 0;}
+.focus2 span { float:left;}
+.focus2 i { float:right;}
+.focus2 .yo_focus { margin:0 auto;}
+.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+.yo_focus dt { position:absolute; }
+.yo_focus img { position:absolute; display:none;}
+.yo_focus dd { top:459px;  position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+.yo_focus ul { float:left; padding:0 0 0 5px;}
+.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+.yo_focus li.on { background:#3F77A5; color:#fff;}
+&lt;/style>
+		
+&lt;div class="focus2">
+	&lt;span id="focus2_leftBtn">&lt;&lt;/span>
+	&lt;i id="focus2_rightBtn">>&lt;/i>
+	&lt;dl class="yo_focus" id="c2_focus">
+		&lt;dt>
+			&lt;a href="#">&lt;img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg"  />&lt;/a>
+		&lt;/dt>
+		&lt;dd>&lt;/dd>
+	&lt;/dl>
+&lt;/div>
+
+
+&lt;script>	
+/**
+ *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+ * 
+ *  **/
+
+Y('yokaPublic',function(){
+	function focus2(opt){
+		var id = opt.focusId,
+			leftBtn = document.getElementById(opt.leftBtn),
+			rightBtn = document.getElementById(opt.rightBtn),
+			focus,
+			current,
+			len;
+		
+		focus = yo.focus(id);
+		len = focus.length;
+		
+		Event.add(leftBtn,'click',function(){
+			change(true);
+		});
+		Event.add(rightBtn,'click',function(){
+			change();
+		});
+		
+		function change(state){
+			current = focus.getCurrent();
+			current = state ? current-1 : current+1;
+			if(current &lt; 0){
+				current = len-1;
+			}
+			if(current == len){
+				current = 0;
+			}
+			focus.change(current);
+		}
+		
+	}
+	focus2({
+		focusId : 'c2_focus',
+		leftBtn : 'focus2_leftBtn',
+		rightBtn : 'focus2_rightBtn'
+	})
+})
+&lt;/script>	
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>样例3</h3>
+					<p class="description">焦点图</p>
+<style>
+	/** focus **/
+	.focus2 { width:480px;}
+	.focus2 span,.focus2 i {font-size:40px; cursor:pointer; display:inline-block; padding:10px; background:#000;  color:#fff; margin:200px 0 0;}
+	.focus2 span { float:left;}
+	.focus2 i { float:right;}
+	.focus2 .yo_focus { margin:0 auto;}
+	.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+	.yo_focus dt { position:absolute; }
+	.yo_focus img { position:absolute; display:none;}
+	.yo_focus dd { top:459px; position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+	.yo_focus ul { float:left; padding:0 0 0 5px;}
+	.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+	.yo_focus li.on { background:#3F77A5; color:#fff;}
+	.info .points { height:20px; overflow:hidden; margin:10px 0 0 180px;}
+	.info .points li { width:10px; height:10px; float:left; margin:0 10px 0 0; background:#333; -webkit-transition:background .3s ease-in; list-style:none;}
+	.points li.on { background:#3F77A5; }
+</style>
+<div class="focus2">
+	<span id="focus3_leftBtn"><</span>
+	<i id="focus3_rightBtn">></i>
+	<dl class="yo_focus" id="c3_focus">
+		<dt>
+			<a href="http://www.yoka.com/star/starwear/2012/0613670396.shtml"><img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg" alt="明星：范冰冰玩透视 关颖露美背抢镜" /></a>
+			<a href="http://www.yoka.com/fashion/popinfo/2012/0612669977.shtml"><img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg" alt="时装：探秘热带雨林 植物印花开遍衣裙" /></a>
+			<a href="http://street.yoka.com/gp_12046.htm"><img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg" alt="街拍：小成本大制作 街拍拍出大片范" /></a>
+			<a href="http://www.yoka.com/luxury/watch/2012/0613670199.shtml"><img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg" alt="奢华：晚宴休闲两不误 女星演绎优雅女表" /></a>
+		</dt>
+		<dd></dd>
+	</dl>
+</div>
+<ul id="points" class="points">
+	
+</ul>
+<script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	function focus3(opt){
+		var id = opt.focusId,
+			leftBtn = document.getElementById(opt.leftBtn),
+			rightBtn = document.getElementById(opt.rightBtn),
+			points = document.getElementById(opt.points),
+			focus,
+			current = 0,
+			lis = [],
+			len;
+		
+		
+		function create(){
+			var frame = document.createDocumentFragment();
+			for(var i=0;i<len;i++){
+				lis[i] = document.createElement('li');
+				if(i==0){
+					lis[i].className = 'on';
+				}
+				lis[i].setAttribute('data-index',i);
+				frame.appendChild(lis[i]);
+			}
+			points.appendChild(frame);
+		}
+		
+		function handle(){
+			Event.add(leftBtn,'click',function(){
+				change(true);
+			});
+			Event.add(rightBtn,'click',function(){
+				change();
+			});
+			Event.add(points,'click',function(e){
+				e = e || window.event;
+				var tar = e.target || e.srcElement,
+					index = tar.getAttribute('data-index');
+				if(index > -1){
+					focus.change(index);
+				}
+			});
+		}
+		
+		function focusCallback(n){
+			if(lis.length == 0) return;
+			lis[current].className = '';
+			current = n;
+			lis[current].className = 'on';
+		}
+		
+		
+		function change(state){
+			var c = focus.getCurrent()*1;
+			c = state ? c-1 : c+1;
+			if(c < 0){
+				c = len-1;
+			}
+			if(c == len){
+				c = 0;
+			}
+			console.log(c)
+			focus.change(c);
+		}
+		
+		function init(){
+			focus = yo.focus(id,null,focusCallback);
+			len = focus.length;
+			create();
+			handle();
+		}
+		init();
+	}
+	
+	Y('yokaPublic',function(){
+		focus3({
+			focusId : 'c3_focus',
+			leftBtn : 'focus3_leftBtn',
+			rightBtn : 'focus3_rightBtn',
+			points : 'points'
+		})
+	})
+</script>
+					
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+	/** focus **/
+	.focus2 { width:480px;}
+	.focus2 span,.focus2 i {font-size:40px; cursor:pointer; display:inline-block; padding:10px; background:#000;  color:#fff; margin:200px 0 0;}
+	.focus2 span { float:left;}
+	.focus2 i { float:right;}
+	.focus2 .yo_focus { margin:0 auto;}
+	.yo_focus,.yo_focus dt { width:315px;height:486px; overflow:hidden; }
+	.yo_focus dt { position:absolute; }
+	.yo_focus img { position:absolute; display:none;}
+	.yo_focus dd { top:459px; display:none;  position:relative;overflow:hidden;width:100%;height:21px; z-index:3;}
+	.yo_focus ul { float:left; padding:0 0 0 5px;}
+	.yo_focus li { padding:3px 8px 0;height:19px; overflow:hidden;font:12px/16px Tahoma;color:#999;text-align:center;cursor:pointer;float:left;background:#333; margin:0 1px 0 0; }
+	.yo_focus li.on { background:#3F77A5; color:#fff;}
+	.points { height:20px; overflow:hidden;}
+	.points li { width:10px; height:10px; float:left; margin:0 10px 0 0; background:#333; -webkit-transition:background .3s ease-in;}
+	.points li.on { background:#3F77A5; }
+&lt;/style>
+&lt;div class="focus2">
+	&lt;span id="focus3_leftBtn">&lt;&lt;/span>
+	&lt;i id="focus3_rightBtn">>&lt;/i>
+	&lt;dl class="yo_focus" id="c3_focus">
+		&lt;dt>
+			&lt;a href="#">&lt;img src="http://p1.yokacdn.com/pic/index/233/2012/201206/U41P1T233D88F8174DT20120614091504.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p9.yokacdn.com/pic/index/233/2012/201206/U41P1T233D87F8174DT20120614091417.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p6.yokacdn.com/pic/index/233/2012/201206/U41P1T233D89F8174DT20120614091532.jpg"  />&lt;/a>
+			&lt;a href="#">&lt;img src="http://p8.yokacdn.com/pic/index/233/2012/201206/U41P1T233D90F8174DT20120614091721.jpg"  />&lt;/a>
+		&lt;/dt>
+		&lt;dd>&lt;/dd>
+	&lt;/dl>
+&lt;/div>
+&lt;ul id="points" class="points">
+	
+&lt;/ul>
+&lt;script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	function focus3(opt){
+		var id = opt.focusId,
+			leftBtn = document.getElementById(opt.leftBtn),
+			rightBtn = document.getElementById(opt.rightBtn),
+			points = document.getElementById(opt.points),
+			focus,
+			current = 0,
+			lis = [],
+			len;
+		
+		
+		function create(){
+			var frame = document.createDocumentFragment();
+			for(var i=0;i&lt;len;i++){
+				lis[i] = document.createElement('li');
+				if(i==0){
+					lis[i].className = 'on';
+				}
+				lis[i].setAttribute('data-index',i);
+				frame.appendChild(lis[i]);
+			}
+			points.appendChild(frame);
+		}
+		
+		function handle(){
+			Event.add(leftBtn,'click',function(){
+				change(true);
+			});
+			Event.add(rightBtn,'click',function(){
+				change();
+			});
+			Event.add(points,'click',function(e){
+				e = e || window.event;
+				var tar = e.target || e.srcElement,
+					index = tar.getAttribute('data-index');
+				if(index > -1){
+					focus.change(index);
+				}
+			});
+		}
+		
+		function focusCallback(n){
+			if(lis.length == 0) return;
+			lis[current].className = '';
+			current = n;
+			lis[current].className = 'on';
+		}
+		
+		
+		function change(state){
+			var c = focus.getCurrent();
+			c = state ? c-1 : c+1;
+			if(c &lt; 0){
+				c = len-1;
+			}
+			if(c == len){
+				c = 0;
+			}
+			focus.change(c);
+		}
+		
+		function init(){
+			focus = yo.focus(id,null,focusCallback);
+			len = focus.length;
+			create();
+			handle();
+		}
+		init();
+	}
+	
+	Y('yokaPublic',function(){
+		focus3({
+			focusId : 'c3_focus',
+			leftBtn : 'focus3_leftBtn',
+			rightBtn : 'focus3_rightBtn',
+			points : 'points'
+		})
+	})
+&lt;/script>
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

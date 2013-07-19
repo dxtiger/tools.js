@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-ScrollBar</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong>Core</strong><strong class="on">Plugin</strong>
+			</div>
+			<div class="menu">
+				<div id="menu_core">
+					
+				</div>
+				<div class="on" id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>ScrollBar</h2>
+				<p class="description">模拟滚动条</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3>ScrollBar</h3>
+					<p class="description">实例化</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+new ScrollBar();
+					</pre>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var bar = new ScrollBar();
+					</pre>
+				</div>
+				
+				
+				<div class="child">
+					<h3>ScrollBar.init</h3>
+					<p class="description">初始化</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+ScrollBar.init(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>options-(<em>object</em>) json格式的参数</li>
+						<ul>
+							<li>id-(<em>string</em>) 滚动条id</li>
+							<li>tag-(<em>string</em>) 滑块标签的nodeName</li>
+							<li>path-(<em>string</em>) 滑动方向,left/top</li>
+							<li>percent-(<em>number</em>) 滑块与总长百分比 0<= percent <= 1</li>
+							<li>current-(<em>number</em>) 滑块当前位置 0<= current <= 1</li>
+							<li>callback-(<em>function</em>) 回调方法</li>
+							<li>className-(<em>string</em>) 滑过样式</li>
+						</ul>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var bar = new ScrollBar();
+    bar.init({
+    	id : 'a',
+    	tag : 'div',
+    	path : 'left',
+    	percent : '0.3',
+    	current : '0.1',
+    	callback : function(){}
+    })
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>ScrollBar.reset</h3>
+					<p class="description">重置滑块参数</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+ScrollBar.reset(current,percent);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>percent-(<em>number</em>) 滑块与总长百分比</li>
+						<li>current-(<em>number</em>) 滑块当前位置</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var bar = new ScrollBar();
+    bar.init({
+    	id : 'a',
+    	tag : 'div',
+    	path : 'left',
+    	percent : '0.3',
+    	current : '0.1',
+    	callback : function(){}
+    });
+    
+    bar.reset(0.4,0.6);
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3>ScrollBar.drag</h3>
+					<p class="description">拖动滑块至某一点</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+ScrollBar.drag(current);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>current-(<em>number</em>) 拖动滑块至当前位置</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var bar = new ScrollBar();
+    bar.init({
+    	id : 'a',
+    	tag : 'div',
+    	path : 'left',
+    	percent : '0.3',
+    	current : '0.1',
+    	callback : function(){}
+    });
+    
+    bar.drag(0.8); // 拖动至80%
+    bar.drag(0);   // 拖动至0%
+    bar.drag(1);   // 拖动至100%
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>样例</h3>
+<style>
+.info .list li { list-style: none;}
+.info .list ul { margin:0;}
+.list { width: 562px; padding: 0 ; overflow:hidden; height:95px; background:#fff;}
+.list div { width: 562px; overflow:hidden; height: 95px; float: left; position: relative;}
+.list ul { height: 95px; overflow: hidden; white-space: nowrap; width: 50000px;}
+.list li { width: 111px; height:84px;  overflow:hidden; float:left; padding-top:11px; padding-left:3px;}
+.list li.on{  background:url(http://p1.yokacdn.com/pic/div/2013/products/HD-photo/images/new_bg.png) no-repeat 0 -286px;}
+.list table { width: 100px; height: 80px; background:#000; border-collapse:collapse;  overflow: hidden;  vertical-align: middle; text-align: center;}
+.list img { vertical-align: middle;}
+.list li a img { width: 100px; height: 80px;}
+.list span { display:block; float: left; width: 45px; height: 50px; overflow:hidden;}
+.scrollBox {width: 562px; height: 17px; margin: 5px 0 0 0; position:relative; }
+.scrollBox_line{width: 562px; height: 8px; overflow:hidden; border-bottom:1px solid #393939;}
+.scroll { width: 562px; height: 11px; position:relative; overflow: hidden; position: relative; top:-6px; }
+.scroll div { 
+	width: 30px; position: absolute; top:0px; height: 11px; cursor:e-resize; padding:0; background: url(http://p1.yokacdn.com/pic/div/2013/products/HD-photo/images/new_bg.png) no-repeat left -89px;
+	-webkit-transition:opacity .2s ease-in;
+	-moz-transition:opacity .2s ease-in;
+}
+.scroll i { display: block; padding: 2px 10px 0 0; margin-left:10px; height: 9px; cursor:e-resize; background: url(http://p1.yokacdn.com/pic/div/2013/products/HD-photo/images/new_bg.png) no-repeat right -89px;}
+.scroll span { width:8px; height: 7px; overflow: hidden; display: block; cursor:e-resize; margin:0 auto; background: url(http://p1.yokacdn.com/pic/div/2013/products/HD-photo/images/new_bg.png) no-repeat 0 -111px;}
+.scroll div.on {
+	opacity: 1;
+	filter:alpha(opacity=100);
+}
+</style>
+<div id="list" class="list">
+  <ul>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/hotshopping/2013/U373P1T117D769836F2577DT20130416172023_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/hotshopping/2013/pic0416769836.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769837F2577DT20130416172037_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769837.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769838F2577DT20130416172044_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769838.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769839F2577DT20130416172048_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769839.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769840F2577DT20130416172054_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769840.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769841F2577DT20130416172058_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769841.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769842F2577DT20130416172102_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769842.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769843F2577DT20130416172106_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769843.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769844F2577DT20130416172112_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769844.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+    <li>
+      <table><tbody><tr><td><img src="http://p1.yokacdn.com/pic/fashion/windows/2013/U373P1T117D769845F2577DT20130416172117_max100x80.jpg" ></td></tr></tbody></table>
+      <a href="/fashion/windows/2013/pic0416769845.shtml"><img src="http://p1.yokacdn.com/pic/div/public/img/space.gif"></a>
+    </li>
+  </ul>
+</div>
+<div class="scrollBox">
+  <div class="scrollBox_line"></div>
+  <div class="scroll" id="scrollBar" ><div class="scroll"><i><span></span></i></div></div>
+</div>
+<script>
+	Y.add('scrollBar',{path:'../js/scrollBar.js'})
+	Y('scrollBar',function(){
+		var list = document.getElementById('list'),
+			ul = list.getElementsByTagName('ul')[0],
+			lis = list.getElementsByTagName('li'),
+			anima = Anima(ul),
+			max = lis[0].offsetWidth*(lis.length - Math.ceil(list.offsetWidth/lis[0].offsetWidth)),
+			per = list.offsetWidth / (lis[0].offsetWidth*lis.length);
+		
+		function cb(n,type){
+			var left = -max*n;
+			anima.stop();
+			if(type){
+				ul.style.marginLeft = left + 'px';
+			}else{
+				anima.start({
+					'margin-left' : left
+				})
+			}
+		}
+		
+		var bar = new ScrollBar();
+		bar.init({
+			id : 'scrollBar',
+			tag : 'div',
+			path : 'left',
+			percent : per,
+			current : 0,
+			single : lis[0].offsetWidth,
+			callback : cb,
+			className : 'on'
+		})
+	})
+</script>
+
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

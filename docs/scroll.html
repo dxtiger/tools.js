@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-scroll</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('yokaPublic',{path:'../js/yokaPublic.js'});
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong>Core</strong><strong class="on">Plugin</strong>
+			</div>
+			<div class="menu">
+				<div id="menu_core">
+					
+				</div>
+				<div class="on" id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>scroll</h2>
+				<p class="description">滚动</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3>scroll</h3>
+					<p class="description">实例化</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+yo.scroll(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>id-(<em>string</em>) dom节点id</li>
+						<li>boxTag-(<em>string</em>) 移动的容器节点名称；</li>
+						<li>singleTag-(<em>string</em>) 内容的容器节点名称</li>
+						<li>leftBtn-(<em>string</em>) 向前翻的按钮id</li>
+						<li>rightBtn-(<em>string</em>) 向后翻的按钮id</li>
+						<li>path-(<em>string</em>) 滚动方向</li>
+						<li>setp-(<em>number</em>) 移动的步数(1个singleTag为1步)，默认为1；</li>
+						<li>loop-(<em>boolean</em>) 是否循环，默认false</li>
+						<li>auto-(<em>boolean</em>) 是否自动播放，默认false</li>
+						<li>time-(<em>number</em>) 自动播放间隔时间，默认5000</li>
+						<li>callback-(<em>function</em>) 回调方法，传入当前屏数。</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>setChange-(<em>function</em>) 控制滚动图变化到某一屏
+							<ul>
+								<li>n-(<em>number</em>) 第n屏</li>
+							</ul>
+						</li>
+						<li>range-(<em>array</em>) 可滚动的最小值，最大值。[min,max]</li>
+						<li>current-(<em>number</em>) 当前屏数</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = yo.scroll({
+		id : 'hotNews',
+		boxTag : 'div',
+		singleTag : 'ul',
+		path : 'top',
+		step : 1,
+		auto : true,
+		time : 3000
+});
+console.log(a); // object;
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>scroll.setChange</h3>
+					<p class="description">控制滚动图变化到某一屏</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+scroll.setChange(n);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>n-(<em>number</em>) 第n屏;</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = yo.scroll({
+		id : 'hotNews',
+		boxTag : 'div',
+		singleTag : 'ul',
+		path : 'top',
+		step : 1,
+		auto : true,
+		time : 3000
+});
+
+a.setChange(3);
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3>scroll.range</h3>
+					<p class="description">获取可滚动的边界值,[min,max]</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+scroll.range;
+					</pre>
+					<h4>返回:</h4>
+					<ul>
+						<li>[min,max]-(<em>array</em>) 滚动的边界值数组</li>
+						<ul>
+							<li>min-(<em>number</em>) 最小值</li>
+							<li>max-(<em>number</em>)</li>
+						</ul>
+					</ul>
+					<h4>例子:</h4>
+					<h5>
+						<pre class="prettyprint">
+&lt;div id="hotNews">
+	&lt;ul>
+		&lt;li>&lt;/li>
+		&lt;li>&lt;/li>
+		&lt;li>&lt;/li>
+		&lt;li>&lt;/li>
+	&lt;/ul>
+&lt;/div>
+						</pre>
+					</h5>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = yo.scroll({
+		id : 'hotNews',
+		boxTag : 'ul',
+		singleTag : 'li',
+		path : 'top',
+		step : 1
+});
+
+console.log(a.range); // [0,3]
+
+
+var b = yo.scroll({
+		id : 'hotNews',
+		boxTag : 'ul',
+		singleTag : 'li',
+		path : 'top',
+		step : 1,
+		auto : true
+});
+
+console.log(b.range); // [0,4]
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3>scroll.current</h3>
+					<p class="description">当前屏数</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+scroll.current;
+					</pre>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = yo.scroll({
+		id : 'hotNews',
+		boxTag : 'div',
+		singleTag : 'ul',
+		path : 'top',
+		step : 1,
+		auto : true,
+		time : 3000
+});
+
+a.setChange(3);
+console.log(a.current); // 3
+
+
+a.setChange(1);
+console.log(a.current); // 1
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3>样例</h3>
+					<p class="description">滚动图</p>
+<style>
+	/** focus **/
+	.hotNews{width:300px;height:18px;overflow:hidden;font-family:'simsun';}
+	.hotNews dt{width:42px;float:left;color:#fc7502}
+	.hotNews dd{width:250px;height:18px;overflow:hidden;float:left}
+	.hotNews ul{width:260px;overflow:hidden;height:18px; margin:0;}
+	.hotNews li{width:120px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;float:left;margin:0 10px 0 0}
+	.hotNews a:link,.hotNews a:visited{color:#6d6d6d;}
+	.hotNews a:hover{color:#f60}
+</style>
+<dl class="hotNews">
+	<dd id="hotNews">
+		<div class="pub_textList">
+			<ul>
+				<li><a href="#">1入夏急救油光痘痘入夏急救油光痘痘</a></li>
+				<li><a href="#">2水宝宝晒后修入夏急救油光痘痘复芦</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">3入夏急救油光痘痘</a></li>
+				<li><a href="#">4水宝宝晒后修复芦</a></li>
+			</ul>
+			<ul>
+				<li><a href="#">5入夏急救油光痘痘</a></li>
+				<li><a href="#">6水宝宝晒后修复芦</a></li>
+			</ul>
+		</div>
+	</dd>
+</dl>
+<script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	Y('yokaPublic',function(){
+		yo.scroll({
+				id : 'hotNews',
+				boxTag : 'div',
+				singleTag : 'ul',
+				path : 'top',
+				step : 1,
+				auto : true,
+				time : 3000
+		});
+	})
+</script>
+
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+	/** focus **/
+	.hotNews{width:300px;height:18px;padding:17px 0 0;overflow:hidden;font-family:'simsun';}
+	.hotNews dt{width:42px;float:left;color:#fc7502}
+	.hotNews dd{width:250px;height:18px;overflow:hidden;float:left}
+	.hotNews ul{width:260px;overflow:hidden;height:18px}
+	.hotNews li{width:120px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;float:left;margin:0 10px 0 0}
+	.hotNews a:link,.hotNews a:visited{color:#6d6d6d;}
+	.hotNews a:hover{color:#f60}
+&lt;/style>
+&lt;dl class="hotNews">
+	&lt;dd id="hotNews">
+		&lt;div class="pub_textList">
+			&lt;ul>
+				&lt;li>&lt;a href="#">1入夏急救油光痘痘入夏急救油光痘痘&lt;/a>&lt;/li>
+				&lt;li>&lt;a href="#">2水宝宝晒后修入夏急救油光痘痘复芦&lt;/a>&lt;/li>
+			&lt;/ul>
+			&lt;ul>
+				&lt;li>&lt;a href="#">3入夏急救油光痘痘&lt;/a>&lt;/li>
+				&lt;li>&lt;a href="#">4水宝宝晒后修复芦&lt;/a>&lt;/li>
+			&lt;/ul>
+			&lt;ul>
+				&lt;li>&lt;a href="#">5入夏急救油光痘痘&lt;/a>&lt;/li>
+				&lt;li>&lt;a href="#">6水宝宝晒后修复芦&lt;/a>&lt;/li>
+			&lt;/ul>
+		&lt;/div>
+	&lt;/dd>
+&lt;/dl>
+&lt;script>
+	/**
+	 *  需要在head中引用 : Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+	 * 
+	 *  **/
+	Y('yokaPublic',function(){
+		yo.scroll({
+				id : 'hotNews',
+				boxTag : 'div',
+				singleTag : 'ul',
+				path : 'top',
+				step : 1,
+				auto : true,
+				time : 3000
+		});
+	})
+&lt;/script>
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>样例</h3>
+					<p class="description">滚动图</p>
+<style>
+			.c6{width:770px;height:280px;overflow:hidden;padding-top:15px;position:relative;}
+			.c6_cont{width:780px;height:280px;overflow:hidden;}
+			.c6_cont div{width:5000px;overflow:hidden;}
+			.c6_cont dl{width:185px;float:left;padding-right:9px;}
+			.c6_cont dl.end{padding-right:0px;}
+			.c6_cont dt{width:185px;height:250px;overflow:hidden;}
+			.c6_cont dd{padding:9px 2px 0px;text-align:center;width:181px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+			.c6_bntL,.c6_bntR{position:absolute;left:0px;top:107px;z-index:10;background:url(http://p1.yokacdn.com/pic/div/2012/products/star/img/mbg.png) no-repeat 0px -96px;width:43px;height:67px;opacity:0.7;filter:alpha(opacity=70); cursor:pointer;}
+			.c6_bntR{left:720px;background:url(http://p1.yokacdn.com/pic/div/2012/products/star/img/mbg.png) no-repeat 0px -165px;}
+		</style>
+		<div class="pub_columnCon c6">
+			<div class="c6_cont" id="c6_scroll">
+				<div style="margin-left: 0px; ">
+					<dl>
+						<dt><a href="http://star.yoka.com/FanBingbing/"><img src="http://p6.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8494DT20120903165823.jpg"></a></dt>
+						<dd><a href="http://star.yoka.com/FanBingbing/">1范冰冰</a></dd>
+					</dl>
+					<dl>
+						<dt><a href="http://star.yoka.com/XuXidi/"><img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8498DT20120903165823.jpg"></a></dt>
+						<dd><a href="http://star.yoka.com/XuXidi/">2小S(徐熙娣)</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/NiNi/"><img src="http://p9.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8501DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/NiNi/">3倪妮</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/VickiZhao"><img src="http://p8.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8504DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/VickiZhao">4赵薇</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/ZhangYuqi"><img src="http://p4.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8507DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/ZhangYuqi">5张雨绮</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/EmmaWatson/"><img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8512DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/EmmaWatson/">6艾玛·沃特森 (Emma Watson)</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/TangWei/"><img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8515DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/TangWei/">7汤唯</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/JueZhou"><img src="http://p3.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8518DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/JueZhou">8周迅</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/CeciliaCheung"><img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8521DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/CeciliaCheung">9张柏芝</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/AvrilLavigne"><img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8524DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/AvrilLavigne">10艾薇儿·拉维尼(AvrilLavigne)</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/CeciliaCheung"><img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8521DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/CeciliaCheung">11张柏芝</a></dd>
+					</dl>
+					<dl>
+						  <dt><a href="http://star.yoka.com/AvrilLavigne"><img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8524DT20120903165823.jpg"></a></dt>
+						  <dd><a href="http://star.yoka.com/AvrilLavigne">12艾薇儿·拉维尼(AvrilLavigne)</a></dd>
+					</dl>
+              </div>
+         </div>
+        <div class="c6_bntL" id="c6_leftBtn"></div>
+        <div class="c6_bntR" id="c6_rightBtn"></div>
+      </div>
+	  <script>
+			Y('yokaPublic',function(){
+				yo.scroll({
+						id : 'c6_scroll',
+						boxTag : 'div',
+						singleTag : 'dl',
+						leftBtn : 'c6_leftBtn',
+						rightBtn : 'c6_rightBtn',
+						path : 'left',
+						step : 4
+				});
+			})
+		</script>
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+	.c6{width:770px;height:280px;overflow:hidden;padding-top:15px;position:relative;}
+	.c6_cont{width:780px;height:280px;overflow:hidden;}
+	.c6_cont div{width:5000px;overflow:hidden;}
+	.c6_cont dl{width:185px;float:left;padding-right:9px;}
+	.c6_cont dl.end{padding-right:0px;}
+	.c6_cont dt{width:185px;height:250px;overflow:hidden;}
+	.c6_cont dd{padding:9px 2px 0px;text-align:center;width:181px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+	.c6_bntL,.c6_bntR{position:absolute;left:0px;top:107px;z-index:10;background:url(http://p1.yokacdn.com/pic/div/2012/products/star/img/mbg.png) no-repeat 0px -96px;width:43px;height:67px;opacity:0.7;filter:alpha(opacity=70); cursor:pointer;}
+	.c6_bntR{left:720px;background:url(http://p1.yokacdn.com/pic/div/2012/products/star/img/mbg.png) no-repeat 0px -165px;}
+&lt;/style>
+&lt;div class="pub_columnCon c6">
+	&lt;div class="c6_cont" id="c6_scroll">
+		&lt;div style="margin-left: 0px; ">
+			&lt;dl>
+				&lt;dt>&lt;a href="http://star.yoka.com/FanBingbing/">&lt;img src="http://p6.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8494DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				&lt;dd>&lt;a href="http://star.yoka.com/FanBingbing/">1范冰冰&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				&lt;dt>&lt;a href="http://star.yoka.com/XuXidi/">&lt;img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8498DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				&lt;dd>&lt;a href="http://star.yoka.com/XuXidi/">2小S(徐熙娣)&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/NiNi/">&lt;img src="http://p9.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8501DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/NiNi/">3倪妮&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/VickiZhao">&lt;img src="http://p8.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8504DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/VickiZhao">4赵薇&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/ZhangYuqi">&lt;img src="http://p4.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8507DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/ZhangYuqi">5张雨绮&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/EmmaWatson/">&lt;img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8512DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/EmmaWatson/">6艾玛·沃特森 (Emma Watson)&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/TangWei/">&lt;img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8515DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/TangWei/">7汤唯&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/JueZhou">&lt;img src="http://p3.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8518DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/JueZhou">8周迅&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/CeciliaCheung">&lt;img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8521DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/CeciliaCheung">9张柏芝&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/AvrilLavigne">&lt;img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8524DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/AvrilLavigne">10艾薇儿·拉维尼(AvrilLavigne)&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/CeciliaCheung">&lt;img src="http://p5.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8521DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/CeciliaCheung">11张柏芝&lt;/a>&lt;/dd>
+			&lt;/dl>
+			&lt;dl>
+				  &lt;dt>&lt;a href="http://star.yoka.com/AvrilLavigne">&lt;img src="http://p7.yokacdn.com/pic/242/2012-09-03/U230P1T242D25F8524DT20120903165823.jpg">&lt;/a>&lt;/dt>
+				  &lt;dd>&lt;a href="http://star.yoka.com/AvrilLavigne">12艾薇儿·拉维尼(AvrilLavigne)&lt;/a>&lt;/dd>
+			&lt;/dl>
+      &lt;/div>
+ &lt;/div>
+	&lt;div class="c6_bntL" id="c6_leftBtn">&lt;/div>
+	&lt;div class="c6_bntR" id="c6_rightBtn">&lt;/div>
+&lt;/div>
+  &lt;script>
+	Y('yokaPublic',function(){
+		yo.scroll({
+				id : 'c6_scroll',
+				boxTag : 'div',
+				singleTag : 'dl',
+				leftBtn : 'c6_leftBtn',
+				rightBtn : 'c6_rightBtn',
+				path : 'left',
+				step : 4
+		});
+	})
+&lt;/script>
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3>样例</h3>
+					<p class="description">滚动图</p>
+<style>
+.tuanCon { width:265px; overflow:hidden; height:100px; margin:0 auto;}
+.tuanList { margin:0 auto; background:#eee;}
+.tuanList , .tuanList dl { width:245px; height:100px; overflow:hidden;}
+.tuanList dl {float:left;}
+.tuanList div { height:100px; overflow:hidden; width:5000px;}
+.tuanList dt { width:100px; height:100px; overflow:hidden; float:left;}
+.tuanList dd { width:135px; padding:18px 0 0 10px; overflow:hidden; float:left;}
+.tuanList b { display:block; height:22px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.tuanList i { height:27px; overflow:hidden; color:#666; background:none; margin:0; float:none; width:130px; font-size:12px;}
+.tuanList u { text-decoration:line-through;}
+.tuanList span { display:inline; background:none; color:#df5502; margin:0; float:none; font-size:14px;}
+.tuanList em a:link , .tuanList em a:visited { display:block; width:70px; height:20px; padding:3px 0 0; text-align:center; color:#fff; background:#3f77a6;}
+.tuanList em a:hover { color:#fff; background:#2c6592; text-decoration:none;}
+.tuanPage { width:100%; margin:3px 0 0; height:10px; overflow:hidden; text-align:center;}
+.tuanPage span { display:inline-block; overflow:hidden; width:10px; height:10px; background:url(http://p1.yokacdn.com/pic/div/2012/products/index/img/otherbg2.gif) no-repeat -15px -799px; cursor:pointer; margin:3px 5px 0 0;}
+.tuanPage span.on { background-position:0 -799px;}
+</style>
+<div class="tuanCon">
+          <div class="tuanList" id="tuanList">
+            <div>
+              <dl>
+<dt><a href="http://www.ymall.com/st5244665/103221/?__TID=131"><img src="http://p10.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7908DT20130408162112.jpg" alt="骷髅烈酒 酒杯套装" /></a></dt>
+                <dd>
+                  <b><a href="http://www.ymall.com/st5244665/103221/?__TID=131">骷髅烈酒 酒杯套装</a></b>
+                  <i>￥<u>188</u> <span>￥168</span></i>
+                  <em><a href="http://www.ymall.com/st5244665/103221/?__TID=131">立即购买</a></em>
+                </dd>
+                            </dl>
+              <dl>
+                <dt><a href="http://www.ymall.com/st5244665/103154/?__TID=131"><img src="http://p6.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7909DT20130408162112.jpg" alt="马蹄靠枕 让肩颈尽情放松" /></a></dt>
+                <dd>
+                  <b><a href="http://www.ymall.com/st5244665/103154/?__TID=131">马蹄靠枕 让肩颈尽情放松</a></b>
+                  <i>￥<u>200</u> <span>￥179</span></i>
+                  <em><a href="http://www.ymall.com/st5244665/103154/?__TID=131">立即购买</a></em>
+                </dd>
+              </dl>
+              <dl>
+<dt><a href="http://www.ymall.com/st5244665/103148/?__TID=131"><img src="http://p3.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7910DT20130408162112.jpg" alt="猴子泡茶器 饮茶变有趣" /></a></dt>
+                <dd>
+                  <b><a href="http://www.ymall.com/st5244665/103148/?__TID=131">猴子泡茶器 饮茶变有趣</a></b>
+                  <i>￥<u>99</u> <span>￥89</span></i>
+                  <em><a href="http://www.ymall.com/st5244665/103148/?__TID=131">立即购买</a></em>
+                </dd>
+
+                </dl>
+              <dl>
+                <dt><a href="http://www.ymall.com/st5244665/103137/?__TID=131"><img src="http://p5.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7911DT20130408162112.jpg" alt="创意书签 读书兴致盎然" /></a></dt>
+                <dd>
+                  <b><a href="http://www.ymall.com/st5244665/103137/?__TID=131">创意书签 读书兴致盎然</a></b>
+                  <i>￥<u>43</u> <span>￥38</span></i>
+                  <em><a href="http://www.ymall.com/st5244665/103137/?__TID=131">立即购买</a></em>
+                </dd>
+              </dl>
+              <dl>
+                <dt><a href="http://www.ymall.com/st5187636/99685/?__TID=131"><img src="http://p7.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7912DT20130408162112.jpg" alt="复刻马歇尔吉他的便携音箱" /></a></dt>
+                <dd>
+                  <b><a href="http://www.ymall.com/st5187636/99685/?__TID=131">复刻马歇尔吉他的便携音箱</a></b>
+                  <i>￥<u>400</u> <span>￥179</span></i>
+                  <em><a href="http://www.ymall.com/st5187636/99685/?__TID=131">立即购买</a></em>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <table class="tuanPage">
+          <tr><td id="tuanPage"></td></tr>
+        </table>
+<script>
+	Y('yokaPublic',function(){
+		 var page = document.getElementById('tuanPage'),
+		 	 spans,
+		 	 length = document.getElementById('tuanList').getElementsByTagName('dl').length,
+		 	 current,
+		 	 scroll;
+		 function init(){
+		 	var str = '';
+			for(var i=0;i<length;i++){
+				str += '<span data-index="'+ i +'"></span>';
+			}
+			page.innerHTML = str;
+			spans = page.getElementsByTagName('span');
+			current = 0;
+			handler();
+		 }
+		 function handler(){
+		 	Event.add(page,'click',function(e){
+		 		e = e || window.event;
+		 		var tar = e.target || e.srcElement;
+		 		if(tar.nodeName == 'SPAN'){
+		 			var index = tar.getAttribute('data-index');
+		 			scroll.setChange(index);
+		 		}
+		 	})
+		 }
+		 function cb(n){
+		 	spans[current].className = '';
+		 	current = n;
+		 	spans[current].className = 'on';
+		 }
+		 init();
+		 scroll = yo.scroll({
+	        id : 'tuanList',
+	        boxTag : 'div',
+	        singleTag : 'dl',
+	        path : 'left',
+	        step : 1,
+	        auto : true,
+	        callback : cb
+	      })
+	})
+</script>
+
+					<h5>源码:</h5>
+					<pre class="prettyprint">
+&lt;style>
+.tuanCon { width:265px; overflow:hidden; height:100px; margin:0 auto;}
+.tuanList { margin:0 auto; background:#eee;}
+.tuanList , .tuanList dl { width:245px; height:100px; overflow:hidden;}
+.tuanList dl {float:left;}
+.tuanList div { height:100px; overflow:hidden; width:5000px;}
+.tuanList dt { width:100px; height:100px; overflow:hidden; float:left;}
+.tuanList dd { width:135px; padding:18px 0 0 10px; overflow:hidden; float:left;}
+.tuanList b { display:block; height:22px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.tuanList i { height:27px; overflow:hidden; color:#666; background:none; margin:0; float:none; width:130px; font-size:12px;}
+.tuanList u { text-decoration:line-through;}
+.tuanList span { display:inline; background:none; color:#df5502; margin:0; float:none; font-size:14px;}
+.tuanList em a:link , .tuanList em a:visited { display:block; width:70px; height:20px; padding:3px 0 0; text-align:center; color:#fff; background:#3f77a6;}
+.tuanList em a:hover { color:#fff; background:#2c6592; text-decoration:none;}
+.tuanPage { width:100%; margin:3px 0 0; height:10px; overflow:hidden; text-align:center;}
+.tuanPage span { display:inline-block; overflow:hidden; width:10px; height:10px; background:url(http://p1.yokacdn.com/pic/div/2012/products/index/img/otherbg2.gif) no-repeat -15px -799px; cursor:pointer; margin:3px 5px 0 0;}
+.tuanPage span.on { background-position:0 -799px;}
+&lt;/style>
+&lt;div class="tuanCon">
+          &lt;div class="tuanList" id="tuanList">
+            &lt;div>
+              &lt;dl>
+&lt;dt>&lt;a href="http://www.ymall.com/st5244665/103221/?__TID=131">&lt;img src="http://p10.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7908DT20130408162112.jpg" alt="骷髅烈酒 酒杯套装" />&lt;/a>&lt;/dt>
+                &lt;dd>
+                  &lt;b>&lt;a href="http://www.ymall.com/st5244665/103221/?__TID=131">骷髅烈酒 酒杯套装&lt;/a>&lt;/b>
+                  &lt;i>￥&lt;u>188&lt;/u> &lt;span>￥168&lt;/span>&lt;/i>
+                  &lt;em>&lt;a href="http://www.ymall.com/st5244665/103221/?__TID=131">立即购买&lt;/a>&lt;/em>
+                &lt;/dd>
+                            &lt;/dl>
+              &lt;dl>
+                &lt;dt>&lt;a href="http://www.ymall.com/st5244665/103154/?__TID=131">&lt;img src="http://p6.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7909DT20130408162112.jpg" alt="马蹄靠枕 让肩颈尽情放松" />&lt;/a>&lt;/dt>
+                &lt;dd>
+                  &lt;b>&lt;a href="http://www.ymall.com/st5244665/103154/?__TID=131">马蹄靠枕 让肩颈尽情放松&lt;/a>&lt;/b>
+                  &lt;i>￥&lt;u>200&lt;/u> &lt;span>￥179&lt;/span>&lt;/i>
+                  &lt;em>&lt;a href="http://www.ymall.com/st5244665/103154/?__TID=131">立即购买&lt;/a>&lt;/em>
+                &lt;/dd>
+              &lt;/dl>
+              &lt;dl>
+&lt;dt>&lt;a href="http://www.ymall.com/st5244665/103148/?__TID=131">&lt;img src="http://p3.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7910DT20130408162112.jpg" alt="猴子泡茶器 饮茶变有趣" />&lt;/a>&lt;/dt>
+                &lt;dd>
+                  &lt;b>&lt;a href="http://www.ymall.com/st5244665/103148/?__TID=131">猴子泡茶器 饮茶变有趣&lt;/a>&lt;/b>
+                  &lt;i>￥&lt;u>99&lt;/u> &lt;span>￥89&lt;/span>&lt;/i>
+                  &lt;em>&lt;a href="http://www.ymall.com/st5244665/103148/?__TID=131">立即购买&lt;/a>&lt;/em>
+                &lt;/dd>
+
+                &lt;/dl>
+              &lt;dl>
+                &lt;dt>&lt;a href="http://www.ymall.com/st5244665/103137/?__TID=131">&lt;img src="http://p5.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7911DT20130408162112.jpg" alt="创意书签 读书兴致盎然" />&lt;/a>&lt;/dt>
+                &lt;dd>
+                  &lt;b>&lt;a href="http://www.ymall.com/st5244665/103137/?__TID=131">创意书签 读书兴致盎然&lt;/a>&lt;/b>
+                  &lt;i>￥&lt;u>43&lt;/u> &lt;span>￥38&lt;/span>&lt;/i>
+                  &lt;em>&lt;a href="http://www.ymall.com/st5244665/103137/?__TID=131">立即购买&lt;/a>&lt;/em>
+                &lt;/dd>
+              &lt;/dl>
+              &lt;dl>
+                &lt;dt>&lt;a href="http://www.ymall.com/st5187636/99685/?__TID=131">&lt;img src="http://p7.yokacdn.com/pic/manual/index/229/201204/201205/idx/2013/0408/U286P1T229D58F7912DT20130408162112.jpg" alt="复刻马歇尔吉他的便携音箱" />&lt;/a>&lt;/dt>
+                &lt;dd>
+                  &lt;b>&lt;a href="http://www.ymall.com/st5187636/99685/?__TID=131">复刻马歇尔吉他的便携音箱&lt;/a>&lt;/b>
+                  &lt;i>￥&lt;u>400&lt;/u> &lt;span>￥179&lt;/span>&lt;/i>
+                  &lt;em>&lt;a href="http://www.ymall.com/st5187636/99685/?__TID=131">立即购买&lt;/a>&lt;/em>
+                &lt;/dd>
+              &lt;/dl>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+        &lt;table class="tuanPage">
+          &lt;tr>&lt;td id="tuanPage">&lt;/td>&lt;/tr>
+        &lt;/table>
+&lt;script>
+	Y('yokaPublic',function(){
+		 var page = document.getElementById('tuanPage'),
+		 	 spans,
+		 	 length = document.getElementById('tuanList').getElementsByTagName('dl').length,
+		 	 current,
+		 	 scroll;
+		 function init(){
+		 	var str = '';
+			for(var i=0;i&lt;length;i++){
+				str += '&lt;span data-index="'+ i +'">&lt;/span>';
+			}
+			page.innerHTML = str;
+			spans = page.getElementsByTagName('span');
+			current = 0;
+			handler();
+		 }
+		 function handler(){
+		 	Event.add(page,'click',function(e){
+		 		e = e || window.event;
+		 		var tar = e.target || e.srcElement;
+		 		if(tar.nodeName == 'SPAN'){
+		 			var index = tar.getAttribute('data-index');
+		 			scroll.setChange(index);
+		 		}
+		 	})
+		 }
+		 function cb(n){
+		 	spans[current].className = '';
+		 	current = n;
+		 	spans[current].className = 'on';
+		 }
+		 init();
+		 scroll = yo.scroll({
+	        id : 'tuanList',
+	        boxTag : 'div',
+	        singleTag : 'dl',
+	        path : 'left',
+	        step : 1,
+	        auto : true,
+	        callback : cb
+	      })
+	})
+&lt;/script>
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

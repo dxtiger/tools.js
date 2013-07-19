@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-Anima</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>Anima</h2>
+				<p class="description">动画方法</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="Anima">Anima</h3>
+					<p class="description">创建一个新动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima(obj/id,options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>id-(<em>string</em>) dom节点的id</li>
+						<li>options-(<em>object</em>) json格式的相应参数
+							<ul>
+								<li>time-(<em>number</em>) 动画时长,单位ms。默认500.</li>
+								<li>trans-(<em>number</em>) 动画曲线。默认1，余弦曲线。 可选：0，1，2，3</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>object-(<em>object</em>) 动画实例</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+console.log(a); // object
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="start">Anima.start</h3>
+					<p class="description">开始执行动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.start(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>options-(<em>object</em>) json格式的样式及样式值. {name:value}
+							<ul>
+								<li>name-(<em>string</em>) 样式名，如: width, left</li>
+								<li>value-(<em>string/number</em>) 样式值，如：100px等</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3 id="cancel">Anima.cancel</h3>
+					<p class="description">取消当前动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.cancel(fn);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>fn-(<em>function</em>) 取消动画后，回调的方法</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+
+a.cancel(function(){
+	alert('anima is cancel')
+})
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="stop">Anima.stop</h3>
+					<p class="description">停止当前动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.stop();
+					</pre>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+
+a.stop()
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="pause">Anima.pause</h3>
+					<p class="description">暂停动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.pause();
+					</pre>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+
+a.pause()
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="reStart">Anima.reStart</h3>
+					<p class="description">恢复暂停的动画</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.reStart();
+					</pre>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+
+a.pause();
+
+a.reStart();
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="complete">Anima.complete</h3>
+					<p class="description">动画完成后，执行的方法</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Anima.complete(fn);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>fn-(<em>function</em>) 方法名或方法。动画完成后，执行一次传入的方法。</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>html</h5>
+					<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+					</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Anima('div');
+
+a.start({
+	left: 100,
+	top: 10,
+	background:'#ff0'
+})
+a.complete(function(){
+	console.log('anima is complete!')
+})
+
+// anima is complete!
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

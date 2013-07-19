@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>template</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>Element</h2>
+				<p class="description">dom相关操作</p>
+				<div class="child">
+					<h3>Element.hasClass</h3>
+					<p class="description">判断此节点是否包含样式名</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.hasClass(obj,className);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>className-(<em>strong</em>) 样式名。
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>(<em>boolean</em>) true/false </li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+var a = Element.hasClass(div,'name');
+var b = Element.hasClass(div,'asa');
+
+console.log(a); // true
+console.log(b); // false
+					</pre>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

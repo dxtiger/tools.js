@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-Element</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>Element</h2>
+				<p class="description">dom节点的相关操作</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="hasClass">Element.hasClass</h3>
+					<p class="description">判断此节点是否包含样式名</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.hasClass(obj,className);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>className-(<em>strong</em>) 样式名。
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>(<em>boolean</em>) true/false </li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+var a = Element.hasClass(div,'name');
+var b = Element.hasClass(div,'asa');
+
+console.log(a); // true
+console.log(b); // false
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="addClass">Element.addClass</h3>
+					<p class="description">给节点添加样式</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.addClass(obj,className);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>className-(<em>strong</em>) 样式名。
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>(<em>null</em>) null </li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" class="name"&gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+Element.addClass(div,'c');
+console.log(div.className); // name c
+
+Element.addClass(div,'asa');
+console.log(div.className); // name c asa
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="removeClass">Element.removeClass</h3>
+					<p class="description">删除节点相应样式</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.removeClass(obj,className);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>className-(<em>strong</em>) 样式名。
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>(<em>null</em>) null </li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" class="name c asa"&gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+Element.removeClass(div,'c');
+console.log(div.className); // name asa
+
+
+Element.removeClass(div,'asa');
+console.log(div.className); // name
+
+Element.removeClass(div,'bbb');
+console.log(div.className); // name
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="getStyle">Element.getStyle</h3>
+					<p class="description">获取节点相应样式</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.getStyle(obj,style);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>style-(<em>strong</em>) 样式名。
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>(<em>string</em>) 样式的值 </li>
+						<li>(<em>undefined</em>) 未取到样式的值</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" style="width:100px;height:100px;background:#fff;margin:0 0 10px 0;"&gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+var width = Element.getStyle(div,'width');
+console.log(width); // 100
+
+
+var height = Element.getStyle(div,'height');
+console.log(height); // 100
+
+var background = Element.getStyle(div,'background-color');
+console.log(background); // rgb(255,255,255)
+
+
+var margin = Element.getStyle(div,'margin');
+console.log(margin); // 0px 0px 10px 0px
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="setStyle">Element.setStyle</h3>
+					<p class="description">为节点添加样式</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.setStyle(obj,style);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>style-(<em>object</em>) 样式值，json格式 {name:value}。如： {left:100}
+							<ul>
+								<li>name-(<em>string</em>) 样式名</li>
+								<li>value-(<em>string</em>) 样式值</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" &gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+Element.setStyle(div,{'width':100});
+console.log(div.style.width); // 100px
+
+
+Element.setStyle(div,{'height':100});
+console.log(div.style.height); // 100px
+
+Element.getStyle(div,{'background':'#fff',margin:'0 0 10px 0'});
+console.log(div.style.cssText); // width:100px;height:100px;background:#fff;margin:0 0 10px 0;
+
+
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3 id="getPosition">Element.getPosition</h3>
+					<p class="description">获取节点的相对于页面的坐标值</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.getPosition(obj);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>{x:number,y:number}(<em>object</em>) 坐标值
+							<ul>
+								<li>x-(<em>number</em>) x坐标值</li>
+								<li>y-(<em>number</em>) y坐标值</li>
+							</ul>
+						</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" style="position:absolute;left:100px;top:100px;" &gt;&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+var p = Element.getPosition(div);
+console.log(p); // {x:100,y:100}
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="getChild">Element.getChild</h3>
+					<p class="description">获取节点的子节点</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Element.getChild(obj,node);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>obj-(<em>element</em>) dom节点</li>
+						<li>node-(<em>string</em>) 节点类型</li>
+					</ol>
+					<h4>返回:</h4>
+					<ul>
+						<li>[element,element,...element](<em>array</em>) 所有子节点数组</li>
+						<li>[element,element,...element](<em>array</em>) 所有node子节点数组</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>html</h5>
+<pre class="prettyprint">
+&lt;div id="div" &gt;
+	&lt;a href="#"&gt;&lt;/a&gt;
+	&lt;a href="#"&gt;&lt;/a&gt;
+	&lt;a href="#"&gt;&lt;/a&gt;
+	&lt;div&gt;&lt;/div&gt;
+	&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var div = document.getElementById('div');
+
+var childs = Element.getChild(div);
+var divs = Element.getChild(div,'div');
+var as = Element.getChild(div,'a');
+
+
+console.log(childs); // [a,a,a,div,div]
+console.log(divs); // [div,div]
+console.log(as); // [a,a,a]
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

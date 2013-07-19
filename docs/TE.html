@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-TE</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>TE</h2>
+				<p class="description">渲染方法</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="TE">TE</h3>
+					<p class="description">创建一个实例</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+TE();
+					</pre>
+					<h4>返回:</h4>
+					<ul>
+						<li>object-(<em>object</em>) 模板渲染实例</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = TE();
+console.log(a); // object
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="setTag">TE.setTag</h3>
+					<p class="description">设置模板的界定符</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+TE.setTag(open,close);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>open-(<em>string</em>) 开始符</li>
+						<li>close-(<em>string</em>) 结束符</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = TE();
+
+a.setTag('{@','@}');
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3 id="assign">TE.assign</h3>
+					<p class="description">写入数据</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+TE.assign(key,value);
+TE.assign(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>key-(<em>string</em>) 变量名</li>
+						<li>value 值</li>
+						<li>options-(<em>object</em>) json格式的样式及样式值. {key:value}
+							<ul>
+								<li>key-(<em>string</em>) 变量名</li>
+								<li>value 值</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = TE();
+
+a.assign('name','tiger');
+a.assign({
+	'aaa' : '111',
+	'bbb' : '222'
+})
+
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="display">TE.display</h3>
+					<p class="description">渲染模板</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+TE.display(templete);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>templete-(<em>string</em>) 模板</li>
+					</ol>
+					<h4>返回:</h4>
+					<ol>
+						<li>html-(<em>string</em>) 渲染完成的html字符串</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = TE();
+
+var tem = '&lt;div&gt;<@= name @>&lt;/div&gt;';
+
+a.assign('name','tiger');
+
+var html = a.display(tem);
+console.log(html); // &lt;div&gt;tiger&lt;/div&gt;
+
+
+					</pre>
+					<pre class="prettyprint">
+var b = TE();
+
+var tem2 = '&lt;ul&gt;'+
+           '<@ for(var key in data){ @>' +
+              '&lt;li&gt;<@= key @> : <@= data[key]>&lt;/li&gt;' + 
+           '<@ } @>'
+           '&lt;/ul&gt;'
+
+b.assign({
+	'aaa' : '111',
+	'bbb' : '222',
+	'ccc' : '333'
+});
+
+var str = b.display(tem2);
+console.log(str); // &lt;ul&gt;&lt;li&gt;aaa : 111&lt;/li&gt;&lt;li&gt;bbb : 222&lt;/li&gt;&lt;li&gt;ccc : 333&lt;/li&gt;&lt;/ul&gt;
+
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="render">TE.render</h3>
+					<p class="description">渲染模板</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+TE.render(templete,data);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>templete-(<em>string</em>) 模板</li>
+						<li>data-(<em>object</em>) 数据,json格式
+							<ul>
+								<li>key-(<em>string</em>) 变量名</li>
+								<li>value 值</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>返回:</h4>
+					<ol>
+						<li>html-(<em>string</em>) 渲染完成的html字符串</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = TE();
+
+var tem = '&lt;div&gt;<@= name @>&lt;/div&gt;';
+
+var html = a.render(tem,{'name':'tiger'});
+console.log(html); // &lt;div&gt;tiger&lt;/div&gt;
+
+
+					</pre>
+					<pre class="prettyprint">
+var b = TE();
+
+var tem2 = '&lt;ul&gt;'+
+           '<@ for(var key in data){ @>' +
+               '&lt;li&gt;<@= key @> : <@= data[key]>&lt;/li&gt;' + 
+           '<@ } @>'
+           '&lt;/ul&gt;'
+
+var str = b.render(tem2,{ data : {
+	'aaa' : '111',
+	'bbb' : '222',
+	'ccc' : '333'
+    }
+});
+
+console.log(str); // &lt;ul&gt;&lt;li&gt;aaa : 111&lt;/li&gt;&lt;li&gt;bbb : 222&lt;/li&gt;&lt;li&gt;ccc : 333&lt;/li&gt;&lt;/ul&gt;
+
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

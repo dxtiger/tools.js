@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-加载器Y</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>Y</h2>
+				<p class="description">加载器</p>
+				<div class="child">
+					<h3 id="add">Y.add</h3>
+					<p class="description">添加需要加载的js文件</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Y.add(name,options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>name-(<em>string</em>) 模块名</li>
+						<li>options-(<em>object</em>) js文件相关数据。
+							<ul>
+								<li>path-(<em>string</em>) 文件地址</li>
+								<li>charset-(<em>string</em>) 文件编码。</li>
+								<li>callback-(<em>function</em>) 回调函数</li>
+								<li>requires-(<em>array</em>) 依赖的模块名或者文件地址</li>
+							</ul>	
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<pre class="prettyprint">
+Y.add('yokaPublic',{path:'http://p1.yokacdn.com/pic/div/2012/products/public/js/yokaPublic.js'});
+Y.add('fashion',{path:'http://p1.yokacdn.com/pic/div/2012/products/fashion/js/fashion.js',requires:['yokaPublic']});
+Y.add('prettify',{path:'js/prettify.js'});
+
+// console.log('添加了yokaPublic.js')
+// console.log('添加了fashion.js，并且依赖yokaPublic.js')
+// console.log('添加了prettify.js')
+					</pre>
+				</div>
+				
+				
+				<div class="child">
+					<h3 id="Y">Y</h3>
+					<p class="description">调用已加载完成js文件中的方法</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Y(name,function(){
+	// you code
+});
+
+Y(name1,name2,...,nameN,function(){
+	// 依赖多模块才能执行的方法，调用方式。
+})
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>name-(<em>string</em>) 模块名。多模块名已,隔开</li>
+						<li>function-(<em>function</em>) 需要执行的方法
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<pre class="prettyprint">
+Y('yokaPublic',function(){
+	console.log('yokaPublic is loaded!');
+	yo.focus('focusId');
+	
+	// console.log('yo.focus 是yokaPublic.js 中的方法');
+});
+
+Y.add('prettify','fashion',function(){
+	prettyPrint();
+	
+	// console.log('多模块加载完成后，才能调用的方法示例！')
+});
+
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>

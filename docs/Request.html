@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>tools.js-Request</title>
+		<meta name="description" content="" />
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/docs.css" rel="stylesheet" />
+		<link href="css/prettify.css" rel="stylesheet" />
+		<script src="../js/tools.js" ></script>
+		<script>
+			Y.add('doc',{path:'js/doc.js',requires:['js/menuData.js']})
+		</script>
+		<script src="js/prettify.js"></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>tools.js 说明文档</h1>
+			<p>http://p1.yokacdn.com/pic/div/2012/products/public/js/tools.js</p>
+		</div>
+		<div class="content">
+			<div class="tab" id="tab">
+				<strong class="on">Core</strong><strong>Plugin</strong>
+			</div>
+			<div class="menu">
+				<div class="on" id="menu_core">
+					
+				</div>
+				<div id="menu_plugin">
+					
+				</div>
+			</div>
+			<div class="info">
+				<h2>Request</h2>
+				<p class="description">jsonp,ajax请求方法</p>
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="Request">Request</h3>
+					<p class="description">创建一个新请求</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Request();
+					</pre>
+					<h4>返回:</h4>
+					<ul>
+						<li>object-(<em>object</em>) 请求实例</li>
+					</ul>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Request();
+console.log(a); // object
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				<div class="child">
+					<h3 id="jsonp">Request.jsonp</h3>
+					<p class="description">执行jsonp请求</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Request.jsonp(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>options-(<em>object</em>) json格式的样式及样式值. {name:value}
+							<ul>
+								<li>url-(<em>string</em>) 请求地址</li>
+								<li>async-(<em>boolean</em>) true/false 是否异步.默认为true</li>
+								<li>success-(<em>function</em>) 回调方法</li>
+								<li>data-(<em>object</em>) 发送的数据,json格式.如:{name:tiger}</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Request();
+
+a.jsonp({
+	url: 'http://www.google.com',
+	success: function(){
+		console.log('jsonp is complete!')
+	},
+	data:{name:'tiger'}
+})
+
+// jsonp is complete!
+					</pre>
+				</div>
+				
+				
+				
+				<div class="child">
+					<h3 id="ajax">Request.ajax</h3>
+					<p class="description">执行ajax请求</p>
+					<h4>调用:</h4>
+					<pre class="prettyprint">
+Request.ajax(options);
+					</pre>
+					<h4>参数:</h4>
+					<ol>
+						<li>options-(<em>object</em>) json格式的样式及样式值. {name:value}
+							<ul>
+								<li>url-(<em>string</em>) 请求地址</li>
+								<li>async-(<em>boolean</em>) true/false 是否异步.默认为true</li>
+								<li>avatar-(<em>string/object/number</em>) 请求标记,用于判断执行的回调是否是当前请求.</li>
+								<li>success-(<em>function</em>) 成功回调方法
+									<ul>
+										<li>responseData 返回的数据</li>
+										<li>dataType-(<em>string</em>) 数据类型.text/xml</li>
+										<li>avatar 如果存在,则当作第三个参数返回</li>
+									</ul>
+								</li>
+								<li>error-(<em>function</em>) 失败回调方法
+									<ul>
+										<li>status-(<em>string</em>) 失败信息</li>
+									</ul>
+								</li>
+								<li>data-(<em>object</em>) 发送的数据,json格式.如:{name:tiger}</li>
+								<li>type-(<em>string</em>) 请求类型,get/post.默认get</li>
+								<li>dataType-(<em>string</em>) 返回数据类型,text/xml.默认text</li>
+							</ul>
+						</li>
+					</ol>
+					<h4>例子:</h4>
+					<h5>javascript</h5>
+					<pre class="prettyprint">
+var a = Request();
+
+a.ajax({
+	url: 'http://www.google.com',
+	type : 'get',
+	success: function(){
+		console.log('jsonp is complete!')
+	},
+	data:{name:'tiger'},
+	error : function(info){
+		console.log(info);
+	}
+})
+
+// ajax is complete!
+					</pre>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		<script>
+			prettyPrint();
+		  </script>
+	</body>
+</html>
